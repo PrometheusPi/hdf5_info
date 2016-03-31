@@ -12,17 +12,19 @@ def getInfo(h5Pointer):
     Output:
     none
     """
+    space = "    "
     print("ITEMS:")
     try:
         # in case it is a group with datat sets
         for i in list(h5Pointer.items()):
-            print(i)
+            print(space + "{:16s}\t{}".format(i[0], i[1]))
     except AttributeError:
         # in case it is a data set
-        print("'Dataset' object has no attribute 'items'")
-        print("np.shape = {}".format(np.shape(h5Pointer)))
-        print(h5Pointer.value)
+        print(space + "'Dataset' object has no attribute 'items'")
+        print(space + "np.shape = {}".format(np.shape(h5Pointer)))
+        print(space + "Raw Data:")
+        print("{}".format(h5Pointer.value))
         
     print("\nATTRIBUTS:")
     for i in list(h5Pointer.attrs.items()):
-        print(i)
+        print(space + "{:16s}\t{}".format(i[0], i[1]))
